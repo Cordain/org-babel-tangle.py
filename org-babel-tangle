@@ -19,7 +19,7 @@ because we need to drop leading spaces before writing to the file, and
 full contents is required to determine the number of spaces to remove.
 """
 
-def match_begin(line,filename):
+def match_begin(line):
     """Read a single line and return a file object if it's a #+begin_src, None otherwise.
 
 Also create corresponding entries in dests and counter if they don't already exist."""
@@ -33,7 +33,7 @@ Also create corresponding entries in dests and counter if they don't already exi
         except ValueError:
             return False
 
-        dest = os.path.join(os.path.dirname(filename),os.path.expanduser(line[beg+1]))
+        dest = os.path.realpath(os.path.expanduser(line[beg+1]))
         if not dest in dests.keys():
             fo = open(dest, 'w')
             dests[dest] = fo
@@ -88,7 +88,7 @@ if __name__ == "__main__":
                 else:
                     buf.append(line)
             else:
-                dest = match_begin(line,os.path.realpath(os.path.expanduser(finput.filename())))
+                dest = match_begin(line)
 
     for fn, fo in dests.items():
         fo.close()
