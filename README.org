@@ -26,7 +26,6 @@ src/main.c.............................................................6 lines
 doc/architecture.puml.................................................14 lines
 #+END_EXAMPLE
 
-NOTE: output is generated 
 
 * Limitations
 
