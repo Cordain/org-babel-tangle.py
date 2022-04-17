@@ -16,6 +16,18 @@ wyag-tests .......................................................... 75 lines
 
 If no file is passed to command-line, it will read from =stdin=.
 
+You can pipe file paths inside script, like so:
+#+BEGIN_EXAMPLE 
+$ find . -type f -name "*.org"
+./README.org
+./doc/main.org
+$ find . -type f -name "*.org" | ./org-babel-tangle
+src/main.c.............................................................6 lines
+doc/architecture.puml.................................................14 lines
+#+END_EXAMPLE
+
+NOTE: output is generated 
+
 * Limitations
 
 This program is extremely dumb, and lacks quite a few Org-mode
